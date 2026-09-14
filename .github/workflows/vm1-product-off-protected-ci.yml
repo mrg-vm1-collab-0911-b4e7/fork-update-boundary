@@ -24,10 +24,10 @@ jobs:
           code=$?
           set -e
           cat control.log
-          echo \"CONTROL_EXIT=$code\"
-          test \"$code\" -eq 1
+          echo "CONTROL_EXIT=$code"
+          test "$code" -eq 1
       - name: Product-off stale verdict run
         run: |
           corepack pnpm exec vitest run --config vitest.config.mjs 2>&1 | tee stale.log
-          grep -q \"Tests rerun: 1\" stale.log
-          grep -q \"CI Insights is not enabled on this repository\" stale.log
+          grep -q "Tests rerun: 1" stale.log
+          grep -q "CI Insights is not enabled on this repository" stale.log
