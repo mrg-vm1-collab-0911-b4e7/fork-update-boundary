@@ -1,0 +1,33 @@
+name: VM1 Product-Off Protected CI 20260914
+on:
+  push:
+    branches:
+      - vm1-product-off-victim-head-260914
+jobs:
+  victim:
+    name: VM1_PRODUCT_OFF_REQUIRED_VITEST_20260914
+    runs-on: ubuntu-latest
+    env:
+      CI: 'true'
+      MERGIFY_TOKEN: ${{ secrets.VM1_MERGIFY_CI_TOKEN_260914 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: corepack pnpm install --frozen-lockfile
+      - name: Deterministic control without Mergify
+        run: |
+          set +e
+          env -u MERGIFY_TOKEN corepack pnpm exec vitest run --config vitest.config.mjs > control.log 2>&1
+          code=$?
+          set -e
+          cat control.log
+          echo \"CONTROL_EXIT=$code\"
+          test \"$code\" -eq 1
+      - name: Product-off stale verdict run
+        run: |
+          corepack pnpm exec vitest run --config vitest.config.mjs 2>&1 | tee stale.log
+          grep -q \"Tests rerun: 1\" stale.log
+          grep -q \"CI Insights is not enabled on this repository\" stale.log
