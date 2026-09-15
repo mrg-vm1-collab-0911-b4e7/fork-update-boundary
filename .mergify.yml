@@ -1,18 +1,7 @@
 pull_request_rules:
-  - name: VM1 B title trigger adds marker
+  - name: AUTO_UPDATE_FORK_BOUNDARY
     conditions:
-      - author = livastic-vm1-secondary
-      - title = VM1_SENDER_LAUNDER_260915
-      - -label = vm1-sender-launder-260915
+      - base = main
+      - "#commits-behind > 0"
     actions:
-      label:
-        add:
-          - vm1-sender-launder-260915
-
-  - name: VM1 generated-event sender permission sentinel
-    conditions:
-      - label = vm1-sender-launder-260915
-      - sender-permission >= admin
-    actions:
-      comment:
-        message: VM1_SENDER_PERMISSION_ADMIN_SENTINEL_260915
+      update:
