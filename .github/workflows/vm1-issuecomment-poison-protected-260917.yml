@@ -2,9 +2,9 @@ name: VM1 Issue Comment Poison Protected E2E 20260917
 
 on:
   workflow_dispatch:
-  pull_request:
+  push:
     branches:
-      - vm1-issuecomment-poison-base-260917
+      - vm1-issuecomment-poison-head-260917
 
 permissions:
   contents: read
@@ -65,4 +65,3 @@ jobs:
           grep -q 'Flaky detection report (mode: unhealthy)' mergify.log
           grep -q 'Tests rerun: 1' mergify.log
           test "$rc" -eq 0
-
