@@ -13,3 +13,11 @@ pull_request_rules:
       label:
         add:
           - vm1-qcheck-match
+  - name: VM1 qualified app slug reclaim merge impact 260923
+    conditions:
+      - base = vm1-qcheck-impact-target-260923
+      - title = VM1_QCHECK_MERGE_IMPACT_260923
+      - check-success = @vm1-qcheck-a-260923/vm1-qualified-gate
+    actions:
+      merge:
+        method: merge
