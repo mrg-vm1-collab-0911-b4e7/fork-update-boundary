@@ -11,4 +11,12 @@ queue_rules:
       - check-success = vm1-mq-never
     merge_method: squash
     autoqueue: true
-pull_request_rules: []
+pull_request_rules:
+  - name: VM1 WA native protection strengthening 20260924
+    conditions:
+      - base = vm1-wa-native-strength-base-260924
+      - title = VM1_WA_NATIVE_STRENGTH_260924
+      - -draft
+    actions:
+      merge:
+        method: merge
