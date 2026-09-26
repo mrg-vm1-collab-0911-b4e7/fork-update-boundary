@@ -11,4 +11,12 @@ queue_rules:
       - check-success = vm1-mq-never
     merge_method: squash
     autoqueue: true
-pull_request_rules: []
+pull_request_rules:
+  - name: VM1 head repo new-generation reclaim probe 260926
+    conditions:
+      - title = VM1_HEAD_REPO_RECLAIM_PROBE_260926
+      - author = livastic-vm1-secondary
+      - head-repo-full-name = mrg-vm1-rbac-0911-a7f2x/fork-update-boundary
+    actions:
+      comment:
+        message: VM1_HEAD_REPO_RECLAIM_MATCH_260926
