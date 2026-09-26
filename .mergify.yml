@@ -10,5 +10,6 @@ queue_rules:
     merge_conditions:
       - check-success = vm1-mq-never
     merge_method: squash
-    autoqueue: true
 pull_request_rules: []
+merge_protections_settings:
+  auto_merge_conditions: true
