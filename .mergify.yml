@@ -11,4 +11,22 @@ queue_rules:
       - check-success = vm1-mq-never
     merge_method: squash
     autoqueue: true
-pull_request_rules: []
+
+  - name: vm1-provider-protected-260928
+    batch_size: 1
+    queue_conditions:
+      - base = vm1-provider-protected-base-260928
+      - title = VM1_PROVIDER_PROTECTED_260928
+    merge_conditions:
+      - check-success = vm1-provider-protected-check
+    merge_method: squash
+
+pull_request_rules:
+  - name: VM1_PROVIDER_PROTECTED_AUTOQUEUE_260928
+    conditions:
+      - base = vm1-provider-protected-base-260928
+      - title = VM1_PROVIDER_PROTECTED_260928
+      - author = livastic-vm1-secondary
+    actions:
+      queue:
+        name: vm1-provider-protected-260928
