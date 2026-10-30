@@ -10,7 +10,6 @@ queue_rules:
     merge_conditions:
       - check-success = vm1-mq-never
     merge_method: squash
-    autoqueue: true
 pull_request_rules:
   - name: VM1 metadata-only stale review support 261002
     conditions:
@@ -22,3 +21,5 @@ pull_request_rules:
       review:
         type: APPROVE
         message: VM1 metadata-only stale review support 261002
+merge_protections_settings:
+  auto_merge_conditions: true
